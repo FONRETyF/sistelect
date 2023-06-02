@@ -21,10 +21,11 @@ a{
   padding-top: 5px;
 }
 header{
-  height: 170px;
+  height: 130px;
   width: 100%;
   position: fixed;
-  background-image: url("img/fondo_encabezado.jpg");
+  background-color: rgba(127, 255, 212, 0.575);
+  /*background-image: url("/img/fondo_encabezado.jpg");*/
   text-align: center;
   border-bottom: 3px;
   border-radius: 3px;
@@ -405,13 +406,3 @@ padding-right:100px;
 #contraseña{
   margin: 3px 55px 0;
 }
-
-/*.section{
-  min-height: 700px;
-  background-color: #FFF;
-}
-h1{
-  text-align: center;
-  margin: 20px;
-  padding: 20px;
-}*/

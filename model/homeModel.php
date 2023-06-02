@@ -22,9 +22,7 @@
                 return($statement->execute()) ? $statement->fetchAll() : false;
             } catch (\Throwable $th) {
                 echo $th;
-            }
-            
-            
+            }            
         }
             
     }

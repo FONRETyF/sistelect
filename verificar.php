@@ -11,9 +11,9 @@
     if($bandera["keybd"]){
         $_SESSION['usuario'] = $usuario;
         if ($bandera["lugarpage"] === "TOLUCA") {
-            header('Location:InTolVotAle.php');
+            header('Location:VotAleT.php');
         }elseif ($bandera["lugarpage"] === "ZINACANTEPEC") {
-            header('Location:InZinVotAle.php');
+            header('Location:VotAleZ.php');
         }
         //header('Location:InTol.php');
     }else{
