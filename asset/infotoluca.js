@@ -13,11 +13,6 @@ $(document).ready(function () {
         scrollCollapse: true,
         paging: true,
         dom: 'Bfrtip', //definicion de los elementos del control de la tabla
-        buttons: [		          
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5'
-        ],
         "ajax":{
             url: 'controller/toluca.php?op=listar',
             type : "post",
@@ -73,7 +68,6 @@ $(document).on("click","#Reporte", function (e) {
 
 function updateT1(idP) {
     $.post("controller/toluca.php?op=actualizarVoto",{idPersona:idP,turno:"1"},function(data){       
-             
     });
     tabla = $('#toluca_data').DataTable();
     tabla.ajax.reload();
@@ -81,7 +75,6 @@ function updateT1(idP) {
 
 function updateT2(idP) {
     $.post("controller/toluca.php?op=actualizarVoto",{idPersona:idP,turno:"2"},function(data){       
-             
     });
     tabla = $('#toluca_data').DataTable();
     tabla.ajax.reload();
@@ -97,7 +90,6 @@ function updateT3(idP) {
 
 function updateT4(idP) {
     $.post("controller/toluca.php?op=actualizarVoto",{idPersona:idP,turno:"4"},function(data){       
-               
     });
     tabla = $('#toluca_data').DataTable();
     tabla.ajax.reload();
@@ -105,7 +97,6 @@ function updateT4(idP) {
 
 function updateDelete(idP){
     $.post("controller/toluca.php?op=corregirVoto",{idPersona:idP},function(data){       
-               
     });
     tabla = $('#toluca_data').DataTable();
     tabla.ajax.reload();

@@ -15,6 +15,10 @@ html{
 }
 body{
   font-family: 'Poppins','Roboto', 'Sans-serif';
+  -webkit-user-select: none;
+ -moz-user-select: none;
+ -ms-user-select: none;
+ user-select: none;
 }
 a{
   width: 400px;

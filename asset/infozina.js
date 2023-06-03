@@ -12,12 +12,8 @@ $(document).ready(function () {
         scrollY: '500px',
         scrollCollapse: true,
         paging: true,
-        dom: 'Bfrtip', //definicion de los elementos del control de la tabla
-        buttons: [		          
-            'copyHtml5',
-            'excelHtml5',
-            'csvHtml5'
-        ],
+        //definicion de los elementos del control de la tabla
+        
         "ajax":{
             url: 'controller/zinacantepec.php?op=listar',
             type : "post",
