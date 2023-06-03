@@ -15,7 +15,7 @@
         
         public function get_infoZin(){
             try {
-                $statement = $this->db->prepare('SELECT id,nomcom,estatvoto,turnvoto FROM public.padronzin WHERE id>0 and id<=1000 ORDER BY id asc');
+                $statement = $this->db->prepare('SELECT id,nomcom,cveelector,curp,estatvoto,turnvoto FROM public.padronzin ORDER BY id asc');
                 $statement->execute();
                 $results = $statement->fetchAll(PDO::FETCH_ASSOC);
                 return $results;

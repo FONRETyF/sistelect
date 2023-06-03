@@ -106,30 +106,38 @@
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(2){
-    width: 550px;
+    width: 350px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(3){
-    width:170px;
+    width: 100px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(4){
-    width: 30x;
+    width: 100px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(5){
-    width: 30px;
+    width:80px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(6){
-    width: 30px;
+    width: 30x;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(7){
     width: 30px;
     border: 1.5px solid rgb(2, 48, 4);
   }
-  .tab_zina th:nth-child(8) {
+  .tab_zina th:nth-child(8){
+    width: 30px;
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zina th:nth-child(9){
+    width: 30px;
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zina th:nth-child(10) {
     width: 30px;
     border: 1.5px solid rgb(2, 48, 4);
   }

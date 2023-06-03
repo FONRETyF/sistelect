@@ -20,9 +20,7 @@
             }
         }
 
-        public function closeConection(){
-            pg_close($PDO);
-        }
+        
     }
     
 ?>

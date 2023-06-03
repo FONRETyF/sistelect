@@ -67,7 +67,9 @@
                             <tr>
                                 <th class="wd-15p"> Num </th>
                                 <th class="wd-15p"> Nombre </th>
-                                <th class="wd-15p"> Estatus voto </th>
+                                <th class="wd-15p"> Clave elector </th>
+                                <th class="wd-15p"> CURP </th>
+                                <th class="wd-15p"> Voto </th>
                                 <th class="wd-15p"></th>
                                 <th class="wd-15p"></th>
                                 <th class="wd-15p"></th>

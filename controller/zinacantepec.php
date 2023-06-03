@@ -13,6 +13,8 @@
                 $a_prep_infoZin = array();
                 $a_prep_infoZin[] = $row["id"];
                 $a_prep_infoZin[] = $row["nomcom"];
+                $a_prep_infoZin[] = $row["cveelector"];
+                $a_prep_infoZin[] = $row["curp"];
                 if ($row["turnvoto"]=='1') {
                     $color1="green";
                     $color2="white";
