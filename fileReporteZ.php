@@ -426,7 +426,7 @@
             $hoja2->setCellValue('A3',"");
             $hoja2->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
 
-            $hoja2->getStyle('A5:C5')->getAlignment()->setHorizontal('center');
+            $hoja2->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
             $hoja2->setCellValue('A5','NP');
             $hoja2->setCellValue('B5','APELLIDO PATERNO');
             $hoja2->setCellValue('C5','APELLIDO MATERNO');
@@ -466,7 +466,7 @@
             $hoja3->setCellValue('A3',"");
             $hoja3->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
 
-            $hoja3->getStyle('A5:C5')->getAlignment()->setHorizontal('center');
+            $hoja3->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
             $hoja3->setCellValue('A5','NP');
             $hoja3->setCellValue('B5','APELLIDO PATERNO');
             $hoja3->setCellValue('C5','APELLIDO MATERNO');

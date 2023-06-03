@@ -68,11 +68,11 @@
                                 <th class="wd-15p"> Num </th>
                                 <th class="wd-15p"> Nombre </th>
                                 <th class="wd-15p"> Voto </th>
-                                <th class="wd-15p"></th>
-                                <th class="wd-15p"></th>
-                                <th class="wd-15p"></th>
-                                <th class="wd-15p"></th>
-                                <th class="wd-15p"></th>
+                                <th class="wd-15p">Reporte 1</th>
+                                <th class="wd-15p">Reporte 2</th>
+                                <th class="wd-15p">Reporte 3</th>
+                                <th class="wd-15p">Reporte 4</th>
+                                <th class="wd-15p">Corregir</th>
                             </tr>
                         </thead>
                         <tbody id="tbodToluca" class="tbodToluca">

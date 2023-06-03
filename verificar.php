@@ -13,9 +13,13 @@
         if ($bandera["lugarpage"] === "TOLUCA") {
             header('Location:VotAleT.php');
         }elseif ($bandera["lugarpage"] === "ZINACANTEPEC") {
-            if ($usuario == "zin01" || $usuario == "zinaM" || $usuario == "zinaJ") {
+            if ($usuario == "zin01") {
                 header('Location:VotAleZ.php');
-            } else {
+            } elseif ($usuario == "zinaM") {
+                header('Location:VotAleZM.php');
+            } elseif ($usuario == "zinaJ") {
+                # code...
+            } else{
                 header('Location:VotAleZina.php');
             }            
         }

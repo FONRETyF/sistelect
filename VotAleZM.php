@@ -49,14 +49,27 @@
                 </div>
             </section>
             <section id="secInfoTol">
+                <div id="divGeneraArchivo">
+                    <div id="divRadsBtnsTurnos">
+                        <div class="divsRadBtns"><input type="radio" id="RadBtnTurno1" class="RadBtnsOptions" name="RdBtnsTurns" value="T1" checked><label for="RadBtnTurno1">Reporte 1</label></div>
+                        <div class="divsRadBtns"><input type="radio" id="RadBtnTurno2" class="RadBtnsOptions" name="RdBtnsTurns" value="T2"><label for="RadBtnTurno2">Reporte 2</label></div>
+                        <div class="divsRadBtns"><input type="radio" id="RadBtnTurno3" class="RadBtnsOptions" name="RdBtnsTurns" value="T3"><label for="RadBtnTurno3">Reporte 3</label></div>
+                        <div class="divsRadBtns"><input type="radio" id="RadBtnTurno4" class="RadBtnsOptions" name="RdBtnsTurns" value="T4"><label for="RadBtnTurno4">Reporte 4</label></div>
+                    </div>
+                    </div>
+                    <div>
+                    <a id="Reporte" name="Reporte" href="#"><img src="img/xls.png" alt="Reporte" title="Reporte" height="35" width="35"></a> 
+                    </div>
+                </div>
                 <div id="ResultConsult">
-                    <table id ="zina_data" class="table display responsive nowrap">
-                        <thead class="tab_zina">
+                    <table id ="zina_dataM" class="table display responsive nowrap">
+                        <thead class="tab_zinaM">
                             <tr>
                                 <th class="wd-15p"> Num </th>
                                 <th class="wd-15p"> Nombre </th>
+                                <th class="wd-15p"> Cve elector </th>
                                 <th class="wd-15p"> Voto </th>
-                                <th class="wd-15p">Reporte1</th>
+                                <th class="wd-15p">Reporte 1</th>
                                 <th class="wd-15p">Reporte 2</th>
                                 <th class="wd-15p">Reporte 3</th>
                                 <th class="wd-15p">Reporte 4</th>
@@ -89,6 +102,6 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="libs/datatables/select2.min.js"></script>
 
-<script type="text/javascript" src="asset/infozina2.js"></script>
+<script type="text/javascript" src="asset/infozinaM.js"></script>
 
 </body>

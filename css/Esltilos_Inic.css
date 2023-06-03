@@ -106,37 +106,64 @@
     border-color: rgb(7, 107, 4);
   }
   .tab_zina th:nth-child(1){
-    width: 3px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(2){
-    width: 350px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(3){
-    width:80px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(4){
-    width: 30x;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(5){
-    width: 30px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(6){
-    width: 30px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(7){
-    width: 30px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(8) {
-    width: 30px;
     border: 1.5px solid rgb(2, 48, 4);
   }
+
+  #zina_dataM{
+    font-size: small;
+    border-color: rgb(7, 107, 4);
+  }
+  .tab_zinaM th:nth-child(1){
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zinaM th:nth-child(2){
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zinaM th:nth-child(3){
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zinaM th:nth-child(4){
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zinaM th:nth-child(5){
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zinaM th:nth-child(6){
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zinaM th:nth-child(7){
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zinaM th:nth-child(8) {
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zinaM th:nth-child(9) {
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  
+
+
   .BtVerde{
     background-color: white;
     border-color: black;
