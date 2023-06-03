@@ -55,18 +55,6 @@ $(document).ready(function () {
     }).DataTable();
 });
 
-$(document).on("click","#Reporte", function (e) {
-    if (document.getElementById("RadBtnTurno1").checked) {
-        location.href = "fileReporteZ.php"+"?turno="+1;
-    }else if (document.getElementById("RadBtnTurno2").checked) {
-        location.href = "fileReporteZ.php"+"?turno="+2;
-    } else if (document.getElementById("RadBtnTurno3").checked) {
-        location.href = "fileReporteZ.php"+"?turno="+3;
-    } else if (document.getElementById("RadBtnTurno4").checked) {
-        location.href = "fileReporteZ.php"+"?turno="+4;
-    }  
-});
-
 function updateT1(idP) {
     $.post("controller/zinacantepec.php?op=actualizarVoto",{idPersona:idP,turno:"1"},function(data){       
     });

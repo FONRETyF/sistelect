@@ -114,34 +114,26 @@
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(3){
-    width: 100px;
-    border: 1.5px solid rgb(2, 48, 4);
-  }
-  .tab_zina th:nth-child(4){
-    width: 100px;
-    border: 1.5px solid rgb(2, 48, 4);
-  }
-  .tab_zina th:nth-child(5){
     width:80px;
     border: 1.5px solid rgb(2, 48, 4);
   }
-  .tab_zina th:nth-child(6){
+  .tab_zina th:nth-child(4){
     width: 30x;
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zina th:nth-child(5){
+    width: 30px;
+    border: 1.5px solid rgb(2, 48, 4);
+  }
+  .tab_zina th:nth-child(6){
+    width: 30px;
     border: 1.5px solid rgb(2, 48, 4);
   }
   .tab_zina th:nth-child(7){
     width: 30px;
     border: 1.5px solid rgb(2, 48, 4);
   }
-  .tab_zina th:nth-child(8){
-    width: 30px;
-    border: 1.5px solid rgb(2, 48, 4);
-  }
-  .tab_zina th:nth-child(9){
-    width: 30px;
-    border: 1.5px solid rgb(2, 48, 4);
-  }
-  .tab_zina th:nth-child(10) {
+  .tab_zina th:nth-child(8) {
     width: 30px;
     border: 1.5px solid rgb(2, 48, 4);
   }
@@ -188,10 +180,10 @@
   }
   .divsRadBtns{
     height: 35px;
-    width: 18%;
+    width: 35%;
     margin: 0 auto;
     text-align: left;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: lighter;
   }
   .RadBtnsOptions{

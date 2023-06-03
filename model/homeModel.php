@@ -15,10 +15,6 @@
                 $query="SELECT password,lugar FROM public.usuarios WHERE cveusu = :usuario";
                 $statement = $this->PDO->prepare($query);
                 $statement->bindParam(":usuario",$usuario);
-                /*$statement->execute();
-                $result=$statement->fetchAll() ;
-                echo("dlkfjlkdfd");
-                var_dump($result);*/
                 return($statement->execute()) ? $statement->fetchAll() : false;
             } catch (\Throwable $th) {
                 echo $th;
