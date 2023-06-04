@@ -11,7 +11,7 @@
     $spreadsheet = new Spreadsheet();
     $activeWorksheet = $spreadsheet->getActiveSheet();
 
-    $nombreArchivo = "RESULTADOS ZINACANTEPEC";
+    $nombreArchivo = "RESULTADOS ZINACANTEPEC JOVENES";
 
     $styleArray = [
         'borders' => [
@@ -29,42 +29,40 @@
     $activeWorksheet->getColumnDimension('D')->setWidth(130,'pt');
     $activeWorksheet->getColumnDimension('E')->setWidth(130,'pt');
     $activeWorksheet->getColumnDimension('F')->setWidth(130,'pt');
-    $activeWorksheet->getColumnDimension('G')->setWidth(130,'pt');
-    $activeWorksheet->getColumnDimension('H')->setWidth(150,'pt');
-    $activeWorksheet->getColumnDimension('I')->setWidth(100,'pt');
-    $activeWorksheet->getColumnDimension('J')->setWidth(80,'pt');
+    $activeWorksheet->getColumnDimension('G')->setWidth(150,'pt');
+    $activeWorksheet->getColumnDimension('H')->setWidth(100,'pt');
+    $activeWorksheet->getColumnDimension('I')->setWidth(80,'pt');
+    $activeWorksheet->getColumnDimension('J')->setWidth(90,'pt');
     $activeWorksheet->getColumnDimension('K')->setWidth(90,'pt');
-    $activeWorksheet->getColumnDimension('L')->setWidth(90,'pt');
 
 
     $activeWorksheet->getStyle('A2')->getFont()->SetBold(true);
     $activeWorksheet->getStyle('A2')->getFont()->SetSize(14);
     $activeWorksheet->setCellValue('A2', " BASE DE DATOS GENERAL");
-    $activeWorksheet->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+    $activeWorksheet->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
     $pdo = new db();
     $db=$pdo->conexion();
         
-    $statement = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, curp, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzin order by id asc");
+    $statement = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzinjov order by id asc");
     $statement->execute();
     $results = $statement->fetchAll(PDO::FETCH_ASSOC);  
             
     $activeWorksheet->setCellValue('A3',"");
-    $activeWorksheet->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+    $activeWorksheet->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-    $activeWorksheet->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+    $activeWorksheet->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
     $activeWorksheet->setCellValue('A5','NP');
     $activeWorksheet->setCellValue('B5','APELLIDO PATERNO');
     $activeWorksheet->setCellValue('C5','APELLIDO MATERNO');
     $activeWorksheet->setCellValue('D5','NOMBRE');
     $activeWorksheet->setCellValue('E5','CLAVE ELECTOR');
     $activeWorksheet->setCellValue('F5','FECHA NAC');
-    $activeWorksheet->setCellValue('G5','CURP');
-    $activeWorksheet->setCellValue('H5','DOMICILIO');
-    $activeWorksheet->setCellValue('I5','TELEFONO');
-    $activeWorksheet->setCellValue('J5','SECCION');
-    $activeWorksheet->setCellValue('K5','MUNICIPIO');
-    $activeWorksheet->setCellValue('L5','TURNO DE VOTO');
+    $activeWorksheet->setCellValue('G5','DOMICILIO');
+    $activeWorksheet->setCellValue('H5','TELEFONO');
+    $activeWorksheet->setCellValue('I5','SECCION');
+    $activeWorksheet->setCellValue('J5','MUNICIPIO');
+    $activeWorksheet->setCellValue('K5','URNO DE VOTO');
 
     $idcheque = 1;
     $numregExcel = 6;
@@ -76,12 +74,11 @@
         $activeWorksheet->setCellValue('D'. $numregExcel,$row["nombre"]);
         $activeWorksheet->setCellValue('E'. $numregExcel,$row["cveelector"]);
         $activeWorksheet->setCellValue('F'. $numregExcel,$row["fechnac"]);
-        $activeWorksheet->setCellValue('G'. $numregExcel,$row["curp"]);
-        $activeWorksheet->setCellValue('H'. $numregExcel,$row["domicilio"]);
-        $activeWorksheet->setCellValue('I'. $numregExcel,$row["telefono"]);
-        $activeWorksheet->setCellValue('J'. $numregExcel,$row["seccelec"]);
-        $activeWorksheet->setCellValue('K'. $numregExcel,$row["municipio"]);
-        $activeWorksheet->setCellValue('L'. $numregExcel,$row["turnvoto"]);
+        $activeWorksheet->setCellValue('G'. $numregExcel,$row["domicilio"]);
+        $activeWorksheet->setCellValue('G'. $numregExcel,$row["telefono"]);
+        $activeWorksheet->setCellValue('I'. $numregExcel,$row["seccelec"]);
+        $activeWorksheet->setCellValue('J'. $numregExcel,$row["municipio"]);
+        $activeWorksheet->setCellValue('K'. $numregExcel,$row["turnvoto"]);
 
         switch ($row["turnvoto"]) {
             case '1':
@@ -100,7 +97,7 @@
                 $color='transparent';
                 break;
         }
-        $celfdas= "A".$numregExcel.":L".$numregExcel."";
+        $celfdas= "A".$numregExcel.":K".$numregExcel."";
         $activeWorksheet->getStyle("A".$numregExcel)->getAlignment()->setHorizontal('center');
         $activeWorksheet->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB($color);                 
         $numregExcel++;
@@ -108,7 +105,7 @@
 
     switch ($turno) {
         case 1:
-            $nombreArchivo = "RESULTADOS ZINACANTEPEC - TURNO 1";
+            $nombreArchivo = "RESULTADOS ZINACANTEPEC JOVENES - TURNO 1";
             $hoja2 = $spreadsheet->createSheet();
             $hoja2->getTabColor()->setRGB('1BA000');
             $hoja2->setTitle("TURNO 1");
@@ -118,38 +115,36 @@
             $hoja2->getColumnDimension('D')->setWidth(130,'pt');
             $hoja2->getColumnDimension('E')->setWidth(130,'pt');
             $hoja2->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja2->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja2->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja2->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja2->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja2->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja2->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja2->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja2->getColumnDimension('J')->setWidth(90,'pt');
             $hoja2->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja2->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja2->getStyle('A2')->getFont()->SetBold(true);
             $hoja2->getStyle('A2')->getFont()->SetSize(14);
-            $hoja2->setCellValue('A2', "TURNO 1 - ZINACANTEPEC");
-            $hoja2->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja2->setCellValue('A2', "TURNO 1 - ZINACANTEPEC JOVENES");
+            $hoja2->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
-            $statementTurno = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, curp, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzin WHERE turnvoto='".$turno."' order by id asc");
+            $statementTurno = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzinjov WHERE turnvoto='".$turno."' order by id asc");
             $statementTurno->execute();
             $resultsTurno = $statementTurno->fetchAll(PDO::FETCH_ASSOC);
 
             $hoja2->setCellValue('A3',"");
-            $hoja2->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja2->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja2->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja2->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja2->setCellValue('A5','NP');
             $hoja2->setCellValue('B5','APELLIDO PATERNO');
             $hoja2->setCellValue('C5','APELLIDO MATERNO');
             $hoja2->setCellValue('D5','NOMBRE');
             $hoja2->setCellValue('E5','CLAVE ELECTOR');
             $hoja2->setCellValue('F5','FECHA NAC');
-            $hoja2->setCellValue('G5','CURP');
-            $hoja2->setCellValue('H5','DOMICILIO');
-            $hoja2->setCellValue('I5','TELEFONO');
-            $hoja2->setCellValue('J5','SECCION');
-            $hoja2->setCellValue('K5','MUNICIPIO');
-            $hoja2->setCellValue('L5','TURNO DE VOTO');
+            $hoja2->setCellValue('G5','DOMICILIO');
+            $hoja2->setCellValue('H5','TELEFONO');
+            $hoja2->setCellValue('I5','SECCION');
+            $hoja2->setCellValue('J5','MUNICIPIO');
+            $hoja2->setCellValue('K5','TURNO DE VOTO');
 
             $numregExcel = 6;
             foreach ($resultsTurno as $row) {
@@ -159,18 +154,18 @@
                 $hoja2->setCellValue('D'. $numregExcel,$row["nombre"]);
                 $hoja2->setCellValue('E'. $numregExcel,$row["cveelector"]);
                 $hoja2->setCellValue('F'. $numregExcel,$row["fechnac"]);
-                $hoja2->setCellValue('G'. $numregExcel,$row["curp"]);
-                $hoja2->setCellValue('H'. $numregExcel,$row["domicilio"]);
-                $hoja2->setCellValue('I'. $numregExcel,$row["telefono"]);
-                $hoja2->setCellValue('J'. $numregExcel,$row["seccelec"]);
-                $hoja2->setCellValue('K'. $numregExcel,$row["municipio"]);
-                $hoja2->setCellValue('L'. $numregExcel,$row["turnvoto"]);
+                $hoja2->setCellValue('G'. $numregExcel,$row["domicilio"]);
+                $hoja2->setCellValue('H'. $numregExcel,$row["telefono"]);
+                $hoja2->setCellValue('I'. $numregExcel,$row["seccelec"]);
+                $hoja2->setCellValue('J'. $numregExcel,$row["municipio"]);
+                $hoja2->setCellValue('K'. $numregExcel,$row["turnvoto"]);
 
-                $celfdas= "A".$numregExcel.":L".$numregExcel."";
+                $celfdas= "A".$numregExcel.":K".$numregExcel."";
                 $hoja2->getStyle("A".$numregExcel)->getAlignment()->setHorizontal('center');
                 $hoja2->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('1BA000');                 
                 $numregExcel++;
             }
+
 
             $hoja3 = $spreadsheet->createSheet();
             $hoja3->setTitle("ESTADISTICAS");
@@ -185,7 +180,7 @@
             
             $hoja3->getStyle('A2')->getFont()->SetBold(true);
             $hoja3->getStyle('A2')->getFont()->SetSize(14);
-            $hoja3->setCellValue('A2', "ESTADISTICAS - ZINACANTEPEC");
+            $hoja3->setCellValue('A2', "ESTADISTICAS - ZINACANTEPEC JOVENES");
             $hoja3->mergeCells('A2:G2')->getStyle('A2:C2')->getAlignment()->setHorizontal('center');
 
             $hoja3->setCellValue('A3',"");
@@ -207,7 +202,7 @@
             $hoja3->getStyle('A6:G6')->applyFromArray($styleArray,false);
             $hoja3->getStyle('A6:G6')->getAlignment()->setHorizontal('center');
             $hoja3->getStyle('A6')->getFont()->SetBold(true);
-            $hoja3->setCellValue('A6','ZINACANTEPEC');
+            $hoja3->setCellValue('A6','ZINACANTEPEC JOVENES');
             $hoja3->setCellValue('B6',count($resultsTurno));
             $hoja3->setCellValue('C6','0');
             $hoja3->setCellValue('D6','0');
@@ -216,10 +211,10 @@
             $hoja3->setCellValue('F6',$turnoTotls);
             $hoja3->setCellValue('G6',count($results));
             break;
-
+            
         case 2:
-            $nombreArchivo = "RESULTADOS ZINACANTEPEC - TURNO 2";
-            $statementTurno = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, curp, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzin WHERE turnvoto='1' or turnvoto='".$turno."' order by turnvoto,id asc");
+            $nombreArchivo = "RESULTADOS ZINACANTEPEC JOVENES - TURNO 2";
+            $statementTurno = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzinjov WHERE turnvoto='1' or turnvoto='".$turno."' order by turnvoto,id asc");
             $statementTurno->execute();
             $resultsTurno = $statementTurno->fetchAll(PDO::FETCH_ASSOC);
 
@@ -232,34 +227,32 @@
             $hoja2->getColumnDimension('D')->setWidth(130,'pt');
             $hoja2->getColumnDimension('E')->setWidth(130,'pt');
             $hoja2->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja2->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja2->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja2->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja2->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja2->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja2->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja2->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja2->getColumnDimension('J')->setWidth(90,'pt');
             $hoja2->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja2->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja2->getStyle('A2')->getFont()->SetBold(true);
             $hoja2->getStyle('A2')->getFont()->SetSize(14);
-            $hoja2->setCellValue('A2', "TURNO 1 - ZINACANTEPEC");
-            $hoja2->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja2->setCellValue('A2', "TURNO 1 - ZINACANTEPEC JOVENES");
+            $hoja2->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
             $hoja2->setCellValue('A3',"");
-            $hoja2->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja2->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja2->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja2->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja2->setCellValue('A5','NP');
             $hoja2->setCellValue('B5','APELLIDO PATERNO');
             $hoja2->setCellValue('C5','APELLIDO MATERNO');
             $hoja2->setCellValue('D5','NOMBRE');
             $hoja2->setCellValue('E5','CLAVE ELECTOR');
             $hoja2->setCellValue('F5','FECHA NAC');
-            $hoja2->setCellValue('G5','CURP');
-            $hoja2->setCellValue('H5','DOMICILIO');
-            $hoja2->setCellValue('I5','TELEFONO');
-            $hoja2->setCellValue('J5','SECCION');
-            $hoja2->setCellValue('K5','MUNICIPIO');
-            $hoja2->setCellValue('L5','TURNO DE VOTO');
+            $hoja2->setCellValue('G5','DOMICILIO');
+            $hoja2->setCellValue('H5','TELEFONO');
+            $hoja2->setCellValue('I5','SECCION');
+            $hoja2->setCellValue('J5','MUNICIPIO');
+            $hoja2->setCellValue('K5','TURNO DE VOTO');
 
             $hoja3 = $spreadsheet->createSheet();
             $hoja3->getTabColor()->setRGB('0167DA');
@@ -270,34 +263,32 @@
             $hoja3->getColumnDimension('D')->setWidth(130,'pt');
             $hoja3->getColumnDimension('E')->setWidth(130,'pt');
             $hoja3->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja3->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja3->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja3->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja3->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja3->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja3->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja3->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja3->getColumnDimension('J')->setWidth(90,'pt');
             $hoja3->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja3->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja3->getStyle('A2')->getFont()->SetBold(true);
             $hoja3->getStyle('A2')->getFont()->SetSize(14);
-            $hoja3->setCellValue('A2', "TURNO 2 - ZINACANTEPEC");
-            $hoja3->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja3->setCellValue('A2', "TURNO 2 - ZINACANTEPEC JOVENES");
+            $hoja3->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
             $hoja3->setCellValue('A3',"");
-            $hoja3->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja3->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja3->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja3->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja3->setCellValue('A5','NP');
             $hoja3->setCellValue('B5','APELLIDO PATERNO');
             $hoja3->setCellValue('C5','APELLIDO MATERNO');
             $hoja3->setCellValue('D5','NOMBRE');
             $hoja3->setCellValue('E5','CLAVE ELECTOR');
             $hoja3->setCellValue('F5','FECHA NAC');
-            $hoja3->setCellValue('G5','CURP');
-            $hoja3->setCellValue('H5','DOMICILIO');
-            $hoja3->setCellValue('I5','TELEFONO');
-            $hoja3->setCellValue('J5','SECCION');
-            $hoja3->setCellValue('K5','MUNICIPIO');
-            $hoja3->setCellValue('L5','TURNO DE VOTO');
+            $hoja3->setCellValue('G5','DOMICILIO');
+            $hoja3->setCellValue('H5','TELEFONO');
+            $hoja3->setCellValue('I5','SECCION');
+            $hoja3->setCellValue('J5','MUNICIPIO');
+            $hoja3->setCellValue('K5','TURNO DE VOTO');
 
             $numregExcel = 6;
             $numregExcel2 = 6;
@@ -311,14 +302,13 @@
                     $hoja2->setCellValue('D'. $numregExcel,$row["nombre"]);
                     $hoja2->setCellValue('E'. $numregExcel,$row["cveelector"]);
                     $hoja2->setCellValue('F'. $numregExcel,$row["fechnac"]);
-                    $hoja2->setCellValue('G'. $numregExcel,$row["curp"]);
-                    $hoja2->setCellValue('H'. $numregExcel,$row["domicilio"]);
-                    $hoja2->setCellValue('I'. $numregExcel,$row["telefono"]);
-                    $hoja2->setCellValue('J'. $numregExcel,$row["seccelec"]);
-                    $hoja2->setCellValue('K'. $numregExcel,$row["municipio"]);
-                    $hoja2->setCellValue('L'. $numregExcel,$row["turnvoto"]);
+                    $hoja2->setCellValue('G'. $numregExcel,$row["domicilio"]);
+                    $hoja2->setCellValue('H'. $numregExcel,$row["telefono"]);
+                    $hoja2->setCellValue('I'. $numregExcel,$row["seccelec"]);
+                    $hoja2->setCellValue('J'. $numregExcel,$row["municipio"]);
+                    $hoja2->setCellValue('K'. $numregExcel,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel.":L".$numregExcel."";
+                    $celfdas= "A".$numregExcel.":K".$numregExcel."";
                     $hoja2->getStyle("A".$numregExcel)->getAlignment()->setHorizontal('center');
                     $hoja2->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('1BA000');                 
                     $numregExcel++;
@@ -330,14 +320,13 @@
                     $hoja3->setCellValue('D'. $numregExcel2,$row["nombre"]);
                     $hoja3->setCellValue('E'. $numregExcel2,$row["cveelector"]);
                     $hoja3->setCellValue('F'. $numregExcel2,$row["fechnac"]);
-                    $hoja3->setCellValue('G'. $numregExcel2,$row["curp"]);
-                    $hoja3->setCellValue('H'. $numregExcel2,$row["domicilio"]);
-                    $hoja3->setCellValue('I'. $numregExcel2,$row["telefono"]);
-                    $hoja3->setCellValue('J'. $numregExcel2,$row["seccelec"]);
-                    $hoja3->setCellValue('K'. $numregExcel2,$row["municipio"]);
-                    $hoja3->setCellValue('L'. $numregExcel2,$row["turnvoto"]);
+                    $hoja3->setCellValue('G'. $numregExcel2,$row["domicilio"]);
+                    $hoja3->setCellValue('H'. $numregExcel2,$row["telefono"]);
+                    $hoja3->setCellValue('I'. $numregExcel2,$row["seccelec"]);
+                    $hoja3->setCellValue('J'. $numregExcel2,$row["municipio"]);
+                    $hoja3->setCellValue('K'. $numregExcel2,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel2.":L".$numregExcel2."";
+                    $celfdas= "A".$numregExcel2.":K".$numregExcel2."";
                     $hoja3->getStyle("A".$numregExcel2)->getAlignment()->setHorizontal('center');
                     $hoja3->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('0167DA');                 
                     $numregExcel2++;
@@ -358,7 +347,7 @@
             
             $hoja4->getStyle('A2')->getFont()->SetBold(true);
             $hoja4->getStyle('A2')->getFont()->SetSize(14);
-            $hoja4->setCellValue('A2', "ESTADISTICAS - ZINACANTEPEC");
+            $hoja4->setCellValue('A2', "ESTADISTICAS - ZINACANTEPEC JOVENES");
             $hoja4->mergeCells('A2:G2')->getStyle('A2:G2')->getAlignment()->setHorizontal('center');
 
             $hoja4->setCellValue('A3',"");
@@ -380,7 +369,7 @@
             $hoja4->getStyle('A6:G6')->applyFromArray($styleArray,false);
             $hoja4->getStyle('A6:G6')->getAlignment()->setHorizontal('center');
             $hoja4->getStyle('A6')->getFont()->SetBold(true);
-            $hoja4->setCellValue('A6','ZINACANTEPEC');
+            $hoja4->setCellValue('A6','ZINACANTEPEC JOVENES');
             $hoja4->setCellValue('B6',$numturn1);
             $hoja4->setCellValue('C6',$numturn2);
             $hoja4->setCellValue('D6','0');
@@ -391,8 +380,8 @@
             break;
 
         case 3:
-            $nombreArchivo = "RESULTADOS ZINACANTEPEC - TURNO 3";
-            $statementTurno = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, curp, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzin WHERE turnvoto='1' or turnvoto='2' or turnvoto='".$turno."' order by turnvoto,id asc");
+            $nombreArchivo = "RESULTADOS ZINACANTEPEC JOVENES - TURNO 3";
+            $statementTurno = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzinjov WHERE turnvoto='1' or turnvoto='2' or turnvoto='".$turno."' order by turnvoto,id asc");
             $statementTurno->execute();
             $resultsTurno = $statementTurno->fetchAll(PDO::FETCH_ASSOC);
 
@@ -405,34 +394,32 @@
             $hoja2->getColumnDimension('D')->setWidth(130,'pt');
             $hoja2->getColumnDimension('E')->setWidth(130,'pt');
             $hoja2->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja2->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja2->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja2->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja2->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja2->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja2->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja2->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja2->getColumnDimension('J')->setWidth(90,'pt');
             $hoja2->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja2->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja2->getStyle('A2')->getFont()->SetBold(true);
             $hoja2->getStyle('A2')->getFont()->SetSize(14);
-            $hoja2->setCellValue('A2', "TURNO 1 - ZINACANTEPEC");
-            $hoja2->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja2->setCellValue('A2', "TURNO 1 - ZINACANTEPEC JOVENES");
+            $hoja2->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
             $hoja2->setCellValue('A3',"");
-            $hoja2->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja2->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja2->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja2->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja2->setCellValue('A5','NP');
             $hoja2->setCellValue('B5','APELLIDO PATERNO');
             $hoja2->setCellValue('C5','APELLIDO MATERNO');
             $hoja2->setCellValue('D5','NOMBRE');
             $hoja2->setCellValue('E5','CLAVE ELECTOR');
             $hoja2->setCellValue('F5','FECHA NAC');
-            $hoja2->setCellValue('G5','CURP');
-            $hoja2->setCellValue('H5','DOMICILIO');
-            $hoja2->setCellValue('I5','TELEFONO');
-            $hoja2->setCellValue('J5','SECCION');
-            $hoja2->setCellValue('K5','MUNICIPIO');
-            $hoja2->setCellValue('L5','TURNO DE VOTO');
+            $hoja2->setCellValue('G5','DOMICILIO');
+            $hoja2->setCellValue('H5','TELEFONO');
+            $hoja2->setCellValue('I5','SECCION');
+            $hoja2->setCellValue('J5','MUNICIPIO');
+            $hoja2->setCellValue('K5','TURNO DE VOTO');
 
             $hoja3 = $spreadsheet->createSheet();
             $hoja3->getTabColor()->setRGB('0167DA');
@@ -443,34 +430,32 @@
             $hoja3->getColumnDimension('D')->setWidth(130,'pt');
             $hoja3->getColumnDimension('E')->setWidth(130,'pt');
             $hoja3->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja3->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja3->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja3->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja3->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja3->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja3->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja3->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja3->getColumnDimension('J')->setWidth(90,'pt');
             $hoja3->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja3->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja3->getStyle('A2')->getFont()->SetBold(true);
             $hoja3->getStyle('A2')->getFont()->SetSize(14);
-            $hoja3->setCellValue('A2', "TURNO 2 - ZINACANTEPEC");
-            $hoja3->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja3->setCellValue('A2', "TURNO 2 - ZINACANTEPEC JOVENES");
+            $hoja3->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
             $hoja3->setCellValue('A3',"");
-            $hoja3->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja3->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja3->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja3->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja3->setCellValue('A5','NP');
             $hoja3->setCellValue('B5','APELLIDO PATERNO');
             $hoja3->setCellValue('C5','APELLIDO MATERNO');
             $hoja3->setCellValue('D5','NOMBRE');
             $hoja3->setCellValue('E5','CLAVE ELECTOR');
             $hoja3->setCellValue('F5','FECHA NAC');
-            $hoja3->setCellValue('G5','CURP');
-            $hoja3->setCellValue('H5','DOMICILIO');
-            $hoja3->setCellValue('I5','TELEFONO');
-            $hoja3->setCellValue('J5','SECCION');
-            $hoja3->setCellValue('K5','MUNICIPIO');
-            $hoja3->setCellValue('L5','TURNO DE VOTO');
+            $hoja3->setCellValue('G5','DOMICILIO');
+            $hoja3->setCellValue('H5','TELEFONO');
+            $hoja3->setCellValue('I5','SECCION');
+            $hoja3->setCellValue('J5','MUNICIPIO');
+            $hoja3->setCellValue('K5','TURNO DE VOTO');
 
             $hoja4 = $spreadsheet->createSheet();
             $hoja4->getTabColor()->setRGB('EAF119');
@@ -481,35 +466,33 @@
             $hoja4->getColumnDimension('D')->setWidth(130,'pt');
             $hoja4->getColumnDimension('E')->setWidth(130,'pt');
             $hoja4->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja4->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja4->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja4->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja4->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja4->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja4->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja4->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja4->getColumnDimension('J')->setWidth(90,'pt');
             $hoja4->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja4->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja4->getStyle('A2')->getFont()->SetBold(true);
             $hoja4->getStyle('A2')->getFont()->SetSize(14);
-            $hoja4->setCellValue('A2', "TURNO 3 - ZINACANTEPEC");
-            $hoja4->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja4->setCellValue('A2', "TURNO 3 - ZINACANTEPEC JOVENES");
+            $hoja4->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
             $hoja4->setCellValue('A3',"");
-            $hoja4->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja4->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja4->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja4->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja4->setCellValue('A5','NP');
             $hoja4->setCellValue('B5','APELLIDO PATERNO');
             $hoja4->setCellValue('C5','APELLIDO MATERNO');
             $hoja4->setCellValue('D5','NOMBRE');
             $hoja4->setCellValue('E5','CLAVE ELECTOR');
             $hoja4->setCellValue('F5','FECHA NAC');
-            $hoja4->setCellValue('G5','CURP');
-            $hoja4->setCellValue('H5','DOMICILIO');
-            $hoja4->setCellValue('I5','TELEFONO');
-            $hoja4->setCellValue('J5','SECCION');
-            $hoja4->setCellValue('K5','MUNICIPIO');
-            $hoja4->setCellValue('L5','TURNO DE VOTO');
-
+            $hoja4->setCellValue('G5','DOMICILIO');
+            $hoja4->setCellValue('H5','TELEFONO');
+            $hoja4->setCellValue('I5','SECCION');
+            $hoja4->setCellValue('J5','MUNICIPIO');
+            $hoja4->setCellValue('K5','TURNO DE VOTO');
+            
             $numregExcel = 6;
             $numregExcel2 = 6;
             $numregExcel3 = 6;
@@ -525,14 +508,13 @@
                     $hoja2->setCellValue('D'. $numregExcel,$row["nombre"]);
                     $hoja2->setCellValue('E'. $numregExcel,$row["cveelector"]);
                     $hoja2->setCellValue('F'. $numregExcel,$row["fechnac"]);
-                    $hoja2->setCellValue('G'. $numregExcel,$row["curp"]);
-                    $hoja2->setCellValue('H'. $numregExcel,$row["domicilio"]);
-                    $hoja2->setCellValue('I'. $numregExcel,$row["telefono"]);
-                    $hoja2->setCellValue('J'. $numregExcel,$row["seccelec"]);
-                    $hoja2->setCellValue('K'. $numregExcel,$row["municipio"]);
-                    $hoja2->setCellValue('L'. $numregExcel,$row["turnvoto"]);
+                    $hoja2->setCellValue('G'. $numregExcel,$row["domicilio"]);
+                    $hoja2->setCellValue('H'. $numregExcel,$row["telefono"]);
+                    $hoja2->setCellValue('I'. $numregExcel,$row["seccelec"]);
+                    $hoja2->setCellValue('J'. $numregExcel,$row["municipio"]);
+                    $hoja2->setCellValue('K'. $numregExcel,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel.":L".$numregExcel."";
+                    $celfdas= "A".$numregExcel.":K".$numregExcel."";
                     $hoja2->getStyle("A".$numregExcel)->getAlignment()->setHorizontal('center');
                     $hoja2->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('1BA000');                 
                     $numregExcel++;
@@ -544,14 +526,13 @@
                     $hoja3->setCellValue('D'. $numregExcel2,$row["nombre"]);
                     $hoja3->setCellValue('E'. $numregExcel2,$row["cveelector"]);
                     $hoja3->setCellValue('F'. $numregExcel2,$row["fechnac"]);
-                    $hoja3->setCellValue('G'. $numregExcel2,$row["curp"]);
-                    $hoja3->setCellValue('H'. $numregExcel2,$row["domicilio"]);
-                    $hoja3->setCellValue('I'. $numregExcel2,$row["telefono"]);
-                    $hoja3->setCellValue('J'. $numregExcel2,$row["seccelec"]);
-                    $hoja3->setCellValue('K'. $numregExcel2,$row["municipio"]);
-                    $hoja3->setCellValue('L'. $numregExcel2,$row["turnvoto"]);
+                    $hoja3->setCellValue('G'. $numregExcel2,$row["domicilio"]);
+                    $hoja3->setCellValue('H'. $numregExcel2,$row["telefono"]);
+                    $hoja3->setCellValue('I'. $numregExcel2,$row["seccelec"]);
+                    $hoja3->setCellValue('J'. $numregExcel2,$row["municipio"]);
+                    $hoja3->setCellValue('K'. $numregExcel2,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel2.":L".$numregExcel2."";
+                    $celfdas= "A".$numregExcel2.":K".$numregExcel2."";
                     $hoja3->getStyle("A".$numregExcel2)->getAlignment()->setHorizontal('center');
                     $hoja3->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('0167DA');                 
                     $numregExcel2++;
@@ -563,14 +544,13 @@
                     $hoja4->setCellValue('D'. $numregExcel3,$row["nombre"]);
                     $hoja4->setCellValue('E'. $numregExcel3,$row["cveelector"]);
                     $hoja4->setCellValue('F'. $numregExcel3,$row["fechnac"]);
-                    $hoja4->setCellValue('G'. $numregExcel3,$row["curp"]);
-                    $hoja4->setCellValue('H'. $numregExcel3,$row["domicilio"]);
-                    $hoja4->setCellValue('I'. $numregExcel3,$row["telefono"]);
-                    $hoja4->setCellValue('J'. $numregExcel3,$row["seccelec"]);
-                    $hoja4->setCellValue('K'. $numregExcel3,$row["municipio"]);
-                    $hoja4->setCellValue('L'. $numregExcel3,$row["turnvoto"]);
+                    $hoja4->setCellValue('G'. $numregExcel3,$row["domicilio"]);
+                    $hoja4->setCellValue('H'. $numregExcel3,$row["telefono"]);
+                    $hoja4->setCellValue('I'. $numregExcel3,$row["seccelec"]);
+                    $hoja4->setCellValue('J'. $numregExcel3,$row["municipio"]);
+                    $hoja4->setCellValue('K'. $numregExcel3,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel3.":L".$numregExcel3."";
+                    $celfdas= "A".$numregExcel3.":K".$numregExcel3."";
                     $hoja4->getStyle("A".$numregExcel3)->getAlignment()->setHorizontal('center');
                     $hoja4->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('EAF119');                 
                     $numregExcel3++;
@@ -591,7 +571,7 @@
             
             $hoja5->getStyle('A2')->getFont()->SetBold(true);
             $hoja5->getStyle('A2')->getFont()->SetSize(14);
-            $hoja5->setCellValue('A2', "ESTADISTICAS - ZINACANTEPEC");
+            $hoja5->setCellValue('A2', "ESTADISTICAS - ZINACANTEPEC JOVENES");
             $hoja5->mergeCells('A2:G2')->getStyle('A2:G2')->getAlignment()->setHorizontal('center');
 
             $hoja5->setCellValue('A3',"");
@@ -613,7 +593,7 @@
             $hoja5->getStyle('A6:G6')->applyFromArray($styleArray,false);
             $hoja5->getStyle('A6:G6')->getAlignment()->setHorizontal('center');
             $hoja5->getStyle('A6')->getFont()->SetBold(true);
-            $hoja5->setCellValue('A6','ZINACANTEPEC');
+            $hoja5->setCellValue('A6','ZINACANTEPEC JOVENES');
             $hoja5->setCellValue('B6',$numturn1);
             $hoja5->setCellValue('C6',$numturn2);
             $hoja5->setCellValue('D6',$numturn3);
@@ -624,8 +604,8 @@
             break;
 
         case 4:
-            $nombreArchivo = "RESULTADOS ZINACANTEPEC - TURNO 4";
-            $statementTurno = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, curp, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzin WHERE turnvoto='1' or turnvoto='2' or turnvoto='3' or turnvoto='".$turno."' order by turnvoto,id asc");
+            $nombreArchivo = "RESULTADOS ZINACANTEPEC JOVENES - TURNO 4";
+            $statementTurno = $db->prepare("SELECT id, cveelector, apepat, apemat, nombre, fechnac, domicilio, telefono, seccelec, municipio, estatvoto, turnvoto FROM public.padronzinjov WHERE turnvoto='1' or turnvoto='2' or turnvoto='3' or turnvoto='".$turno."' order by turnvoto,id asc");
             $statementTurno->execute();
             $resultsTurno = $statementTurno->fetchAll(PDO::FETCH_ASSOC);
 
@@ -638,34 +618,32 @@
             $hoja2->getColumnDimension('D')->setWidth(130,'pt');
             $hoja2->getColumnDimension('E')->setWidth(130,'pt');
             $hoja2->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja2->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja2->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja2->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja2->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja2->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja2->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja2->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja2->getColumnDimension('J')->setWidth(90,'pt');
             $hoja2->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja2->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja2->getStyle('A2')->getFont()->SetBold(true);
             $hoja2->getStyle('A2')->getFont()->SetSize(14);
-            $hoja2->setCellValue('A2', "TURNO 1 - ZINACANTEPEC");
-            $hoja2->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja2->setCellValue('A2', "TURNO 1 - ZINACANTEPEC JOVENES");
+            $hoja2->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
             $hoja2->setCellValue('A3',"");
-            $hoja2->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja2->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja2->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja2->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja2->setCellValue('A5','NP');
             $hoja2->setCellValue('B5','APELLIDO PATERNO');
             $hoja2->setCellValue('C5','APELLIDO MATERNO');
             $hoja2->setCellValue('D5','NOMBRE');
             $hoja2->setCellValue('E5','CLAVE ELECTOR');
             $hoja2->setCellValue('F5','FECHA NAC');
-            $hoja2->setCellValue('G5','CURP');
-            $hoja2->setCellValue('H5','DOMICILIO');
-            $hoja2->setCellValue('I5','TELEFONO');
-            $hoja2->setCellValue('J5','SECCION');
-            $hoja2->setCellValue('K5','MUNICIPIO');
-            $hoja2->setCellValue('L5','TURNO DE VOTO');
+            $hoja2->setCellValue('G5','DOMICILIO');
+            $hoja2->setCellValue('H5','TELEFONO');
+            $hoja2->setCellValue('I5','SECCION');
+            $hoja2->setCellValue('J5','MUNICIPIO');
+            $hoja2->setCellValue('K5','TURNO DE VOTO');
 
             $hoja3 = $spreadsheet->createSheet();
             $hoja3->getTabColor()->setRGB('0167DA');
@@ -676,34 +654,32 @@
             $hoja3->getColumnDimension('D')->setWidth(130,'pt');
             $hoja3->getColumnDimension('E')->setWidth(130,'pt');
             $hoja3->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja3->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja3->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja3->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja3->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja3->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja3->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja3->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja3->getColumnDimension('J')->setWidth(90,'pt');
             $hoja3->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja3->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja3->getStyle('A2')->getFont()->SetBold(true);
             $hoja3->getStyle('A2')->getFont()->SetSize(14);
-            $hoja3->setCellValue('A2', "TURNO 2 - ZINACANTEPEC");
-            $hoja3->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja3->setCellValue('A2', "TURNO 2 - ZINACANTEPEC JOVENES");
+            $hoja3->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
             $hoja3->setCellValue('A3',"");
-            $hoja3->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja3->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja3->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja3->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja3->setCellValue('A5','NP');
             $hoja3->setCellValue('B5','APELLIDO PATERNO');
             $hoja3->setCellValue('C5','APELLIDO MATERNO');
             $hoja3->setCellValue('D5','NOMBRE');
             $hoja3->setCellValue('E5','CLAVE ELECTOR');
             $hoja3->setCellValue('F5','FECHA NAC');
-            $hoja3->setCellValue('G5','CURP');
-            $hoja3->setCellValue('H5','DOMICILIO');
-            $hoja3->setCellValue('I5','TELEFONO');
-            $hoja3->setCellValue('J5','SECCION');
-            $hoja3->setCellValue('K5','MUNICIPIO');
-            $hoja3->setCellValue('L5','TURNO DE VOTO');
+            $hoja3->setCellValue('G5','DOMICILIO');
+            $hoja3->setCellValue('H5','TELEFONO');
+            $hoja3->setCellValue('I5','SECCION');
+            $hoja3->setCellValue('J5','MUNICIPIO');
+            $hoja3->setCellValue('K5','TURNO DE VOTO');
 
             $hoja4 = $spreadsheet->createSheet();
             $hoja4->getTabColor()->setRGB('EAF119');
@@ -714,34 +690,32 @@
             $hoja4->getColumnDimension('D')->setWidth(130,'pt');
             $hoja4->getColumnDimension('E')->setWidth(130,'pt');
             $hoja4->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja4->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja4->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja4->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja4->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja4->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja4->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja4->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja4->getColumnDimension('J')->setWidth(90,'pt');
             $hoja4->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja4->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja4->getStyle('A2')->getFont()->SetBold(true);
             $hoja4->getStyle('A2')->getFont()->SetSize(14);
-            $hoja4->setCellValue('A2', "TURNO 3 - ZINACANTEPEC");
-            $hoja4->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja4->setCellValue('A2', "TURNO 3 - ZINACANTEPEC JOVENES");
+            $hoja4->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
             $hoja4->setCellValue('A3',"");
-            $hoja4->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja4->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja4->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja4->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja4->setCellValue('A5','NP');
             $hoja4->setCellValue('B5','APELLIDO PATERNO');
             $hoja4->setCellValue('C5','APELLIDO MATERNO');
             $hoja4->setCellValue('D5','NOMBRE');
             $hoja4->setCellValue('E5','CLAVE ELECTOR');
             $hoja4->setCellValue('F5','FECHA NAC');
-            $hoja4->setCellValue('G5','CURP');
-            $hoja4->setCellValue('H5','DOMICILIO');
-            $hoja4->setCellValue('I5','TELEFONO');
-            $hoja4->setCellValue('J5','SECCION');
-            $hoja4->setCellValue('K5','MUNICIPIO');
-            $hoja4->setCellValue('L5','TURNO DE VOTO');
+            $hoja4->setCellValue('G5','DOMICILIO');
+            $hoja4->setCellValue('H5','TELEFONO');
+            $hoja4->setCellValue('I5','SECCION');
+            $hoja4->setCellValue('J5','MUNICIPIO');
+            $hoja4->setCellValue('K5','TURNO DE VOTO');
 
             $hoja5 = $spreadsheet->createSheet();
             $hoja5->getTabColor()->setRGB('FE1414');
@@ -752,33 +726,31 @@
             $hoja5->getColumnDimension('D')->setWidth(130,'pt');
             $hoja5->getColumnDimension('E')->setWidth(130,'pt');
             $hoja5->getColumnDimension('F')->setWidth(130,'pt');
-            $hoja5->getColumnDimension('G')->setWidth(130,'pt');
-            $hoja5->getColumnDimension('H')->setWidth(150,'pt');
-            $hoja5->getColumnDimension('I')->setWidth(100,'pt');
-            $hoja5->getColumnDimension('J')->setWidth(80,'pt');
+            $hoja5->getColumnDimension('G')->setWidth(150,'pt');
+            $hoja5->getColumnDimension('H')->setWidth(100,'pt');
+            $hoja5->getColumnDimension('I')->setWidth(80,'pt');
+            $hoja5->getColumnDimension('J')->setWidth(90,'pt');
             $hoja5->getColumnDimension('K')->setWidth(90,'pt');
-            $hoja5->getColumnDimension('L')->setWidth(90,'pt');
             
             $hoja5->getStyle('A2')->getFont()->SetBold(true);
             $hoja5->getStyle('A2')->getFont()->SetSize(14);
-            $hoja5->setCellValue('A2', "TURNO 4 - ZINACANTEPEC");
-            $hoja5->mergeCells('A2:L2')->getStyle('A2:L2')->getAlignment()->setHorizontal('center');
+            $hoja5->setCellValue('A2', "TURNO 4 - ZINACANTEPEC JOVENES");
+            $hoja5->mergeCells('A2:K2')->getStyle('A2:K2')->getAlignment()->setHorizontal('center');
 
             $hoja5->setCellValue('A3',"");
-            $hoja5->mergeCells('A3:L3')->getStyle('A3:L3')->getAlignment()->setHorizontal('center');
+            $hoja5->mergeCells('A3:K3')->getStyle('A3:K3')->getAlignment()->setHorizontal('center');
 
-            $hoja5->getStyle('A5:L5')->getAlignment()->setHorizontal('center');
+            $hoja5->getStyle('A5:K5')->getAlignment()->setHorizontal('center');
             $hoja5->setCellValue('B5','APELLIDO PATERNO');
             $hoja5->setCellValue('C5','APELLIDO MATERNO');
             $hoja5->setCellValue('D5','NOMBRE');
             $hoja5->setCellValue('E5','CLAVE ELECTOR');
             $hoja5->setCellValue('F5','FECHA NAC');
-            $hoja5->setCellValue('G5','CURP');
-            $hoja5->setCellValue('H5','DOMICILIO');
-            $hoja5->setCellValue('I5','TELEFONO');
-            $hoja5->setCellValue('J5','SECCION');
-            $hoja5->setCellValue('K5','MUNICIPIO');
-            $hoja5->setCellValue('L5','TURNO DE VOTO');
+            $hoja5->setCellValue('G5','DOMICILIO');
+            $hoja5->setCellValue('H5','TELEFONO');
+            $hoja5->setCellValue('I5','SECCION');
+            $hoja5->setCellValue('J5','MUNICIPIO');
+            $hoja5->setCellValue('K5','TURNO DE VOTO');
             
             $numregExcel = 6;
             $numregExcel2 = 6;
@@ -796,14 +768,13 @@
                     $hoja2->setCellValue('D'. $numregExcel,$row["nombre"]);
                     $hoja2->setCellValue('E'. $numregExcel,$row["cveelector"]);
                     $hoja2->setCellValue('F'. $numregExcel,$row["fechnac"]);
-                    $hoja2->setCellValue('G'. $numregExcel,$row["curp"]);
-                    $hoja2->setCellValue('H'. $numregExcel,$row["domicilio"]);
-                    $hoja2->setCellValue('I'. $numregExcel,$row["telefono"]);
-                    $hoja2->setCellValue('J'. $numregExcel,$row["seccelec"]);
-                    $hoja2->setCellValue('K'. $numregExcel,$row["municipio"]);
-                    $hoja2->setCellValue('L'. $numregExcel,$row["turnvoto"]);
+                    $hoja2->setCellValue('G'. $numregExcel,$row["domicilio"]);
+                    $hoja2->setCellValue('H'. $numregExcel,$row["telefono"]);
+                    $hoja2->setCellValue('I'. $numregExcel,$row["seccelec"]);
+                    $hoja2->setCellValue('J'. $numregExcel,$row["municipio"]);
+                    $hoja2->setCellValue('K'. $numregExcel,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel.":L".$numregExcel."";
+                    $celfdas= "A".$numregExcel.":K".$numregExcel."";
                     $hoja2->getStyle("A".$numregExcel)->getAlignment()->setHorizontal('center');
                     $hoja2->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('1BA000');                 
                     $numregExcel++;
@@ -815,14 +786,13 @@
                     $hoja3->setCellValue('D'. $numregExcel2,$row["nombre"]);
                     $hoja3->setCellValue('E'. $numregExcel2,$row["cveelector"]);
                     $hoja3->setCellValue('F'. $numregExcel2,$row["fechnac"]);
-                    $hoja3->setCellValue('G'. $numregExcel2,$row["curp"]);
-                    $hoja3->setCellValue('H'. $numregExcel2,$row["domicilio"]);
-                    $hoja3->setCellValue('I'. $numregExcel2,$row["telefono"]);
-                    $hoja3->setCellValue('J'. $numregExcel2,$row["seccelec"]);
-                    $hoja3->setCellValue('K'. $numregExcel2,$row["municipio"]);
-                    $hoja3->setCellValue('L'. $numregExcel2,$row["turnvoto"]);
+                    $hoja3->setCellValue('G'. $numregExcel2,$row["domicilio"]);
+                    $hoja3->setCellValue('H'. $numregExcel2,$row["telefono"]);
+                    $hoja3->setCellValue('I'. $numregExcel2,$row["seccelec"]);
+                    $hoja3->setCellValue('J'. $numregExcel2,$row["municipio"]);
+                    $hoja3->setCellValue('K'. $numregExcel2,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel2.":L".$numregExcel2."";
+                    $celfdas= "A".$numregExcel2.":K".$numregExcel2."";
                     $hoja3->getStyle("A".$numregExcel2)->getAlignment()->setHorizontal('center');
                     $hoja3->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('0167DA');                 
                     $numregExcel2++;
@@ -834,14 +804,13 @@
                     $hoja4->setCellValue('D'. $numregExcel3,$row["nombre"]);
                     $hoja4->setCellValue('E'. $numregExcel3,$row["cveelector"]);
                     $hoja4->setCellValue('F'. $numregExcel3,$row["fechnac"]);
-                    $hoja4->setCellValue('G'. $numregExcel3,$row["curp"]);
-                    $hoja4->setCellValue('H'. $numregExcel3,$row["domicilio"]);
-                    $hoja4->setCellValue('I'. $numregExcel3,$row["telefono"]);
-                    $hoja4->setCellValue('J'. $numregExcel3,$row["seccelec"]);
-                    $hoja4->setCellValue('K'. $numregExcel3,$row["municipio"]);
-                    $hoja4->setCellValue('L'. $numregExcel3,$row["turnvoto"]);
+                    $hoja4->setCellValue('G'. $numregExcel3,$row["domicilio"]);
+                    $hoja4->setCellValue('H'. $numregExcel3,$row["telefono"]);
+                    $hoja4->setCellValue('I'. $numregExcel3,$row["seccelec"]);
+                    $hoja4->setCellValue('J'. $numregExcel3,$row["municipio"]);
+                    $hoja4->setCellValue('K'. $numregExcel3,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel3.":L".$numregExcel3."";
+                    $celfdas= "A".$numregExcel3.":K".$numregExcel3."";
                     $hoja4->getStyle("A".$numregExcel3)->getAlignment()->setHorizontal('center');
                     $hoja4->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('EAF119');                 
                     $numregExcel3++;
@@ -853,14 +822,13 @@
                     $hoja5->setCellValue('D'. $numregExcel4,$row["nombre"]);
                     $hoja5->setCellValue('E'. $numregExcel4,$row["cveelector"]);
                     $hoja5->setCellValue('F'. $numregExcel4,$row["fechnac"]);
-                    $hoja5->setCellValue('G'. $numregExcel4,$row["curp"]);
-                    $hoja5->setCellValue('H'. $numregExcel4,$row["domicilio"]);
-                    $hoja5->setCellValue('I'. $numregExcel4,$row["telefono"]);
-                    $hoja5->setCellValue('J'. $numregExcel4,$row["seccelec"]);
-                    $hoja5->setCellValue('K'. $numregExcel4,$row["municipio"]);
-                    $hoja5->setCellValue('L'. $numregExcel4,$row["turnvoto"]);
+                    $hoja5->setCellValue('G'. $numregExcel4,$row["domicilio"]);
+                    $hoja5->setCellValue('H'. $numregExcel4,$row["telefono"]);
+                    $hoja5->setCellValue('I'. $numregExcel4,$row["seccelec"]);
+                    $hoja5->setCellValue('J'. $numregExcel4,$row["municipio"]);
+                    $hoja5->setCellValue('K'. $numregExcel4,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel4.":L".$numregExcel4."";
+                    $celfdas= "A".$numregExcel4.":K".$numregExcel4."";
                     $hoja5->getStyle("A".$numregExcel4)->getAlignment()->setHorizontal('center');
                     $hoja5->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('FE1414');                 
                     $numregExcel4++;
@@ -881,7 +849,7 @@
             
             $hoja6->getStyle('A2')->getFont()->SetBold(true);
             $hoja6->getStyle('A2')->getFont()->SetSize(14);
-            $hoja6->setCellValue('A2', "ESTADISTICAS - ZINACANTEPEC");
+            $hoja6->setCellValue('A2', "ESTADISTICAS - ZINACANTEPEC JOVENES");
             $hoja6->mergeCells('A2:G2')->getStyle('A2:G2')->getAlignment()->setHorizontal('center');
 
             $hoja6->setCellValue('A3',"");
@@ -903,7 +871,7 @@
             $hoja6->getStyle('A6:G6')->applyFromArray($styleArray,false);
             $hoja6->getStyle('A6:G6')->getAlignment()->setHorizontal('center');
             $hoja6->getStyle('A6')->getFont()->SetBold(true);
-            $hoja6->setCellValue('A6','ZINACANTEPEC');
+            $hoja6->setCellValue('A6','ZINACANTEPEC JOVENES');
             $hoja6->setCellValue('B6',$numturn1);
             $hoja6->setCellValue('C6',$numturn2);
             $hoja6->setCellValue('D6',$numturn3);

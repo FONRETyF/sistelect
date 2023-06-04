@@ -1,6 +1,5 @@
 <?php
     session_start();
-    
 ?>
 
 <!DOCTYPE html>
@@ -14,8 +13,6 @@
     <link rel="stylesheet" type="text/css" href="css/Esltilos_Inic.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/fae5672c64.js" crossorigin="anonymous"></script>
-    
-
     
     <script src="libs/datatables/jquery-3.6.0.js"></script>
     <script src="libs/datatables/jquery-3.6.0.min.js"></script> 
@@ -37,7 +34,7 @@
     </header>
 
     <section class="contenidoGral">
-        <form class="FormcontenidoGral" action="" method="POST" name="" id="form_toluca">
+        <form class="FormcontenidoGral" action="" method="POST" name="" id="form_zina1">
             <section class="sectNavegador">
                 <div class="DivBotnsNav">
                     <div id="DivFechaActual">
@@ -56,7 +53,7 @@
                                 <th class="wd-15p"> Num </th>
                                 <th class="wd-15p"> Nombre </th>
                                 <th class="wd-15p"> Voto </th>
-                                <th class="wd-15p">Reporte1</th>
+                                <th class="wd-15p">Reporte 1</th>
                                 <th class="wd-15p">Reporte 2</th>
                                 <th class="wd-15p">Reporte 3</th>
                                 <th class="wd-15p">Reporte 4</th>
@@ -79,7 +76,6 @@
 <script src="libs/datatables/jquery.peity.js"></script>
 <script src="libs/datatables/jquery.dataTables.js"></script>
 <script src="libs/datatables/jquery.dataTables.min.js"></script>
-
 
 <script src="libs/datatables-responsive/dataTables.responsive.js"></script>
 <script src="libs/datatables/dataTables.buttons.min.js"></script>

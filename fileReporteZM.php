@@ -469,8 +469,6 @@
             $hoja2->setCellValue('M5','MUNICIPIO');
             $hoja2->setCellValue('N5','TURNO DE VOTO');
 
-
-
             $hoja3 = $spreadsheet->createSheet();
             $hoja3->getTabColor()->setRGB('0167DA');
             $hoja3->setTitle("TURNO 2");
@@ -512,8 +510,6 @@
             $hoja3->setCellValue('L5','SECCION');
             $hoja3->setCellValue('M5','MUNICIPIO');
             $hoja3->setCellValue('N5','TURNO DE VOTO');
-
-
 
             $hoja4 = $spreadsheet->createSheet();
             $hoja4->getTabColor()->setRGB('EAF119');
@@ -581,7 +577,7 @@
                     $hoja2->setCellValue('M'. $numregExcel,$row["municipio"]);
                     $hoja2->setCellValue('N'. $numregExcel,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel.":L".$numregExcel."";
+                    $celfdas= "A".$numregExcel.":N".$numregExcel."";
                     $hoja2->getStyle("A".$numregExcel)->getAlignment()->setHorizontal('center');
                     $hoja2->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('1BA000');                 
                     $numregExcel++;
@@ -724,8 +720,6 @@
             $hoja2->setCellValue('M5','MUNICIPIO');
             $hoja2->setCellValue('N5','TURNO DE VOTO');
 
-
-
             $hoja3 = $spreadsheet->createSheet();
             $hoja3->getTabColor()->setRGB('0167DA');
             $hoja3->setTitle("TURNO 2");
@@ -768,8 +762,6 @@
             $hoja3->setCellValue('M5','MUNICIPIO');
             $hoja3->setCellValue('N5','TURNO DE VOTO');
 
-
-
             $hoja4 = $spreadsheet->createSheet();
             $hoja4->getTabColor()->setRGB('EAF119');
             $hoja4->setTitle("TURNO 3");
@@ -811,8 +803,6 @@
             $hoja4->setCellValue('L5','SECCION');
             $hoja4->setCellValue('M5','MUNICIPIO');
             $hoja4->setCellValue('N5','TURNO DE VOTO');
-
-
 
             $hoja5 = $spreadsheet->createSheet();
             $hoja5->getTabColor()->setRGB('FE1414');
@@ -881,7 +871,7 @@
                     $hoja2->setCellValue('M'. $numregExcel,$row["municipio"]);
                     $hoja2->setCellValue('N'. $numregExcel,$row["turnvoto"]);
 
-                    $celfdas= "A".$numregExcel.":L".$numregExcel."";
+                    $celfdas= "A".$numregExcel.":N".$numregExcel."";
                     $hoja2->getStyle("A".$numregExcel)->getAlignment()->setHorizontal('center');
                     $hoja2->getStyle($celfdas)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('1BA000');                 
                     $numregExcel++;
@@ -1009,11 +999,10 @@
     $writer->save('php://output');
 
     try {
-        //$writer->save('hello world.xlsx');
         $writer = new Xlsx($spreadsheet);
         exit;
     } catch (\Throwable $th) {
-        echo("hubiou un error");
+        echo("hay un error");
     }
 
 ?>

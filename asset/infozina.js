@@ -1,9 +1,7 @@
 var tabla;
 
 function init(){
-
 }
-
 
 $(document).ready(function () {
     $('#zina_data').dataTable({
@@ -12,8 +10,6 @@ $(document).ready(function () {
         scrollY: '500px',
         scrollCollapse: true,
         paging: true,
-        //definicion de los elementos del control de la tabla
-        
         "ajax":{
             url: 'controller/zinacantepec.php?op=listar',
             type : "post",

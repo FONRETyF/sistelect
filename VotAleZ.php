@@ -1,6 +1,5 @@
 <?php
     session_start();
-    
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +36,7 @@
     </header>
 
     <section class="contenidoGral">
-        <form class="FormcontenidoGral" action="" method="POST" name="" id="form_toluca">
+        <form class="FormcontenidoGral" action="" method="POST" name="" id="form_zina">
             <section class="sectNavegador">
                 <div class="DivBotnsNav">
                     <div id="DivFechaActual">

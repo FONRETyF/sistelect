@@ -1,18 +1,20 @@
 var tabla;
 
 function init(){
+
 }
 
 $(document).ready(function () {
-    $('#zina_dataM').dataTable({
+    $('#zina_dataJ').dataTable({
         "aProcessing": true, //procesamiento del datatable
         "aServerSide": true, //paginacion y filtrado por el servidor
         scrollY: '500px',
         scrollCollapse: true,
         paging: true,
+        //definicion de los elementos del control de la tabla
         
         "ajax":{
-            url: 'controller/zinacantepec.php?op=listarM',
+            url: 'controller/zinacantepec.php?op=listarJ',
             type : "post",
             dataType : "json",						
             error: function(e){
@@ -54,48 +56,48 @@ $(document).ready(function () {
 
 $(document).on("click","#Reporte", function (e) {
     if (document.getElementById("RadBtnTurno1").checked) {
-        location.href = "fileReporteZM.php"+"?turno="+1;
+        location.href = "fileReporteZJ.php"+"?turno="+1;
     }else if (document.getElementById("RadBtnTurno2").checked) {
-        location.href = "fileReporteZM.php"+"?turno="+2;
+        location.href = "fileReporteZJ.php"+"?turno="+2;
     } else if (document.getElementById("RadBtnTurno3").checked) {
-        location.href = "fileReporteZM.php"+"?turno="+3;
+        location.href = "fileReporteZJ.php"+"?turno="+3;
     } else if (document.getElementById("RadBtnTurno4").checked) {
-        location.href = "fileReporteZM.php"+"?turno="+4;
+        location.href = "fileReporteZJ.php"+"?turno="+4;
     }  
 });
 
 function updateT1(idP) {
-    $.post("controller/zinacantepec.php?op=actualizarVotoM",{idPersona:idP,turno:"1"},function(data){       
+    $.post("controller/zinacantepec.php?op=actualizarVotoJ",{idPersona:idP,turno:"1"},function(data){       
     });
-    tabla = $('#zina_dataM').DataTable();
+    tabla = $('#zina_dataJ').DataTable();
     tabla.ajax.reload();
 }
 
 function updateT2(idP) {
-    $.post("controller/zinacantepec.php?op=actualizarVotoM",{idPersona:idP,turno:"2"},function(data){       
+    $.post("controller/zinacantepec.php?op=actualizarVotoJ",{idPersona:idP,turno:"2"},function(data){       
     });
-    tabla = $('#zina_dataM').DataTable();
+    tabla = $('#zina_dataJ').DataTable();
     tabla.ajax.reload();
 }
 
 function updateT3(idP) {
-    $.post("controller/zinacantepec.php?op=actualizarVotoM",{idPersona:idP,turno:"3"},function(data){       
+    $.post("controller/zinacantepec.php?op=actualizarVotoJ",{idPersona:idP,turno:"3"},function(data){       
     });
-    tabla = $('#zina_dataM').DataTable();
+    tabla = $('#zina_dataJ').DataTable();
     tabla.ajax.reload();
 }
 
 function updateT4(idP) {
-    $.post("controller/zinacantepec.php?op=actualizarVotoM",{idPersona:idP,turno:"4"},function(data){       
+    $.post("controller/zinacantepec.php?op=actualizarVotoJ",{idPersona:idP,turno:"4"},function(data){       
     });
-    tabla = $('#zina_dataM').DataTable();
+    tabla = $('#zina_dataJ').DataTable();
     tabla.ajax.reload();
 }
 
 function updateDelete(idP){
-    $.post("controller/zinacantepec.php?op=corregirVotoM",{idPersona:idP},function(data){       
+    $.post("controller/zinacantepec.php?op=corregirVotoJ",{idPersona:idP},function(data){       
     });
-    tabla = $('#zina_dataM').DataTable();
+    tabla = $('#zina_dataJ').DataTable();
     tabla.ajax.reload();
 }
 

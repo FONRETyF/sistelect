@@ -34,7 +34,7 @@
     </header>
 
     <section class="contenidoGral">
-        <form class="FormcontenidoGral" action="" method="POST" name="" id="form_zinamuj">
+        <form class="FormcontenidoGral" action="" method="POST" name="" id="form_zinajov">
             <section class="sectNavegador">
                 <div class="DivBotnsNav">
                     <div id="DivFechaActual">
@@ -59,8 +59,8 @@
                     </div>
                 </div>
                 <div id="ResultConsult">
-                    <table id ="zina_dataM" class="table display responsive nowrap">
-                        <thead class="tab_zinaM">
+                    <table id ="zina_dataJ" class="table display responsive nowrap">
+                        <thead class="tab_zinaJ">
                             <tr>
                                 <th class="wd-15p"> Num </th>
                                 <th class="wd-15p"> Nombre </th>
@@ -90,6 +90,7 @@
 <script src="libs/datatables/jquery.dataTables.js"></script>
 <script src="libs/datatables/jquery.dataTables.min.js"></script>
 
+
 <script src="libs/datatables-responsive/dataTables.responsive.js"></script>
 <script src="libs/datatables/dataTables.buttons.min.js"></script>
 <script src="libs/datatables/buttons.html5.min.js"></script>
@@ -98,6 +99,6 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="libs/datatables/select2.min.js"></script>
 
-<script type="text/javascript" src="asset/infozinaM.js"></script>
+<script type="text/javascript" src="asset/infozinaJ.js"></script>
 
 </body>

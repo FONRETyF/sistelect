@@ -5,7 +5,6 @@
     $obj = new homeController();
     $usuario = $obj->limpiarusuario($_POST['usuario']);
     $contraseña = $obj->limpiarcadena($_POST['contraseña']);
-
     $bandera = $obj->verificarusuario($usuario,$contraseña);
 
     if($bandera["keybd"]){
@@ -18,8 +17,8 @@
             } elseif ($usuario == "zinaM") {
                 header('Location:VotAleZM.php');
             } elseif ($usuario == "zinaJ") {
-                # code...
-            } else{
+                header('Location:VotAleZJ.php');
+            } elseif (($usuario == "zin02" || $usuario == "zin03")) {
                 header('Location:VotAleZina.php');
             }            
         }
