@@ -66,6 +66,7 @@
                             <tr>
                                 <th class="wd-15p"> Num </th>
                                 <th class="wd-15p"> Nombre </th>
+                                <th class="wd-15p"> Clave elector </th>
                                 <th class="wd-15p"> Voto </th>
                                 <th class="wd-15p">Reporte 1</th>
                                 <th class="wd-15p">Reporte 2</th>

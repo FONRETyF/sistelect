@@ -129,6 +129,9 @@
   .tab_zina th:nth-child(8) {
     border: 1.5px solid rgb(2, 48, 4);
   }
+  .tab_zina th:nth-child(9) {
+    border: 1.5px solid rgb(2, 48, 4);
+  }
 
   #zina_dataM{
     font-size: small;

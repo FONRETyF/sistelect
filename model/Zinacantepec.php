@@ -17,7 +17,7 @@
             switch ($usuario) {
                 case 'zin01':
                     try {
-                        $statement = $this->db->prepare('SELECT id,nomcom,estatvoto,turnvoto FROM public.padronzin ORDER BY id asc');
+                        $statement = $this->db->prepare('SELECT id,nomcom,cveelector,estatvoto,turnvoto FROM public.padronzin ORDER BY id asc');
                         $statement->execute();
                         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
                         return $results;
